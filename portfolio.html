@@ -1,1 +1,376 @@
-এখানে আপনার HTML বসাবেন✅
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youth Aid Society | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --accent: #38bdf8;
+            --gradient: linear-gradient(135deg, #0ea5e9, #818cf8);
+            --ring-gradient: conic-gradient(#0ea5e9, #22d3ee, #818cf8, #c084fc, #0ea5e9);
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f1f5f9;
+                --card-bg: #ffffff;
+                --text-main: #1e293b;
+                --text-dim: #64748b;
+                --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 32px 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        /* Profile Section */
+        .profile-wrapper {
+            position: relative;
+            width: 148px;
+            height: 148px;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ring {
+            position: absolute;
+            width: 148px;
+            height: 148px;
+            border-radius: 50%;
+            background: var(--ring-gradient);
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-img {
+            position: relative;
+            width: 132px;
+            height: 132px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            padding: 4px;
+            z-index: 1;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* Name & Badge */
+        .name-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .name {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .fa-circle-check {
+            color: #1d9bf0;
+            font-size: 1.2rem;
+        }
+
+        /* Typing Bio */
+        .bio-typing {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--accent);
+            height: 24px;
+            margin-bottom: 24px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: var(--accent);
+            margin-left: 2px;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Info Card */
+        .info-card {
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(128, 128, 128, 0.1);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 0.85rem;
+        }
+
+        .info-row:not(:last-child) {
+            border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+        }
+
+        .label {
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        .value {
+            font-weight: 600;
+        }
+
+        /* Contact Button */
+        .btn-main {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: var(--gradient);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-main:active {
+            transform: scale(0.96);
+        }
+
+        /* Expandable Contact Section */
+        .contact-grid {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease-in-out;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 0;
+        }
+
+        .contact-grid.active {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 16px;
+        }
+
+        .social-btn {
+            text-decoration: none;
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .full-width { grid-column: span 2; }
+        .fb { background: #1877f2; }
+        .msgr { background: #0084ff; }
+        .wa { background: #25d366; }
+        .tg { background: #229ed9; }
+        .yt { background: #ff0000; }
+
+        /* Footer */
+        footer {
+            margin-top: 32px;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+
+        .footer-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-icons a {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .footer-icons a:hover {
+            color: var(--accent);
+        }
+
+        /* Font Awesome Stack Fix */
+        .fa-stack { width: 1.2em; height: 1.2em; line-height: 1.2em; vertical-align: middle; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-wrapper">
+            <div class="ring"></div>
+            <div class="profile-img">
+                <img src="https://ibb.co.com/fdPfvyD8" alt="Youth Aid Society">
+            </div>
+        </div>
+
+        <div class="name-container">
+            <h1 class="name">Youth Aid Society</h1>
+            <span class="fa-stack">
+                <i class="fa-solid fa-certificate fa-stack-2x" style="color: #1d9bf0;"></i>
+                <i class="fa-solid fa-check fa-stack-1x fa-inverse" style="font-size: 0.6em;"></i>
+            </span>
+        </div>
+
+        <div class="bio-typing" id="typing-bio"></div>
+
+        <div class="info-card">
+            <div class="info-row">
+                <span class="label">Establishment</span>
+                <span class="value">15 July 2023</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Category</span>
+                <span class="value">Organisation</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Country</span>
+                <span class="value">Bangladesh</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Address</span>
+                <span class="value">Feni, Bangladesh</span>
+            </div>
+        </div>
+
+        <button class="btn-main" onclick="toggleContact()">
+            Contact Me
+            <i class="fa-solid fa-chevron-down" id="arrow-icon"></i>
+        </button>
+
+        <div class="contact-grid" id="contact-section">
+            <a href="https://www.facebook.com/share/1GNgyVAXs9/" class="social-btn fb full-width" target="_blank">
+                <i class="fa-brands fa-facebook"></i> Facebook
+            </a>
+            <a href="https://m.me/me.kaziarman" class="social-btn msgr" target="_blank">
+                <i class="fa-brands fa-facebook-messenger"></i> Messenger
+            </a>
+            <a href="https://chat.whatsapp.com/BnxrpNrxQrw3Q8AqalKJ1y" class="social-btn wa" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://t.me/youthaidsociety" class="social-btn tg" target="_blank">
+                <i class="fa-brands fa-telegram"></i> Telegram
+            </a>
+            <a href="https://www.youtube.com/@youthaidsociety" class="social-btn yt" target="_blank">
+                <i class="fa-brands fa-youtube"></i> YouTube
+            </a>
+        </div>
+
+        <footer>
+            <p class="footer-text">© 2026 youthaidsociety. All rights reserved.</p>
+            <div class="footer-icons">
+                <a href="https://www.facebook.com/share/1GNgyVAXs9/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://chat.whatsapp.com/BnxrpNrxQrw3Q8AqalKJ1y" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://t.me/youthaidsociety" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://www.youtube.com/@youthaidsociety" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Typing Animation
+        const bioText = "BIO স্বপ্ন দেখি তারুণ্যের";
+        const typingContainer = document.getElementById('typing-bio');
+        let i = 0;
+
+        function typeWriter() {
+            if (i < bioText.length) {
+                typingContainer.innerHTML = bioText.substring(0, i + 1) + '<span class="cursor">|</span>';
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                typingContainer.innerHTML = bioText + '<span class="cursor">|</span>';
+            }
+        }
+
+        // Contact Section Toggle
+        function toggleContact() {
+            const section = document.getElementById('contact-section');
+            const arrow = document.getElementById('arrow-icon');
+            
+            section.classList.toggle('active');
+            
+            if (section.classList.contains('active')) {
+                arrow.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                arrow.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        }
+
+        // Start typing on load
+        window.onload = typeWriter;
+    </script>
+</body>
+</html>
